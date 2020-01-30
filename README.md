@@ -7,11 +7,11 @@ _Laravel AJAX CRUD Modal_ demo provides basic CRUD web application without page 
 ## Installation
 1. CLONE the package via the command line:
 ```js
-  git clone https://github.com/sreejithbs/Laravel-AJAX-CRUD-Modal.git
+  git clone https://github.com/sreejithbs/phpajax-laravel.git
 ```
 2. Change into the working directory
 ```
-  cd Laravel-AJAX-CRUD-Modal
+  cd phpajax-laravel
 ```
 3. Open Project in a Code Editor, rename `.env.example` to `.env` and modify DB name, username, password to your environment.
 
