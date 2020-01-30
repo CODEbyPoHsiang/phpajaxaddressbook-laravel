@@ -1,4 +1,4 @@
-Laravel AJAX CRUD Modal
+Laravel AJAX CRUD 
 ======================
 
 _Laravel AJAX CRUD Modal_ demo provides basic CRUD web application without page refresh in Laravel using Bootstrap Modal and AJAX.
@@ -38,13 +38,6 @@ cp .env.example .env
   http://localhost:8000/product
 ```
 
-## Screenshots
-![image](https://user-images.githubusercontent.com/30528898/28817853-19591164-76c7-11e7-82e3-6162cc373962.png)
-![image](https://user-images.githubusercontent.com/30528898/28818003-85a2167c-76c7-11e7-8280-9859e1f49604.png)
-![image](https://user-images.githubusercontent.com/30528898/28818035-9ad693b0-76c7-11e7-9305-54dffdada2ad.png)
+參考 
 
-
-## License
-This project is open-source and licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-Made with &#10084; in Laravel
+https://github.com/sreejithbs/Laravel-AJAX-CRUD-Modal
