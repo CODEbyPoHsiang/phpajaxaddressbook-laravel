@@ -13,8 +13,10 @@ _Laravel AJAX CRUD Modal_ demo provides basic CRUD web application without page 
 ```
   cd phpajax-laravel
 ```
-3. Open Project in a Code Editor, rename `.env.example` to `.env` and modify DB name, username, password to your environment.
-
+3. Open Project in a Code Editor, rename 
+```
+cp .env.example .env
+```
 4. Install composer dependencies
 ```
   composer install
