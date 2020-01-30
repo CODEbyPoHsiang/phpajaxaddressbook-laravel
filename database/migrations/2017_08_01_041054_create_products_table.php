@@ -9,7 +9,15 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('phone');
+            $table->string('ename');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('sex');
+            $table->string('city');
+            $table->string('township');
+            $table->string('postcode');
+            $table->string('address');
+            $table->string('notes');
             $table->timestamps();
         });
     }

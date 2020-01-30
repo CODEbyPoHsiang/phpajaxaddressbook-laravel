@@ -7,7 +7,6 @@ $(document).ready(function(){
 
     //display modal form for creating new product *********************
     $('#btn_add').click(function(){
-        
         $('.modal-title').text("新增聯絡人"); //Modal視窗的標題會判斷改為"新增聯絡人"
         $('#btn-save').val("新增");
         $('#frmProducts').trigger("reset");
@@ -28,9 +27,15 @@ $(document).ready(function(){
                 console.log(data);
                 $('#product_id').val(data.id);
                 $('#name').val(data.name);
+                $('#ename').val(data.ename);
                 $('#phone').val(data.phone);
                 $('#email').val(data.email);
+                $('#sex').val(data.sex);
+                $('#city').val(data.city);
+                $('#township').val(data.township);
+                $('#postcode').val(data.postcode);
                 $('#address').val(data.address);
+                $('#notes').val(data.notes);
                 $('.modal-title').text("編輯聯絡人"); //Modal的標題會判斷，並改為"編輯聯絡人"標題
                 $('#btn-save').val("編輯");
                 $('#myModal').modal('show');
@@ -54,12 +59,18 @@ $(document).ready(function(){
         e.preventDefault(); 
         var formData = {
             name: $('#name').val(),
+            ename: $('#ename').val(),
             phone: $('#phone').val(),
             email: $('#email').val(),
+            sex: $('#sex').val(),
+            city: $('#city').val(),
+            township: $('#township').val(),
+            postcode: $('#postcode').val(),
             address: $('#address').val(),
+            notes: $('#notes').val(),
         }
 
-        //used to determine the http verb to use [新增=POST], [編輯=PUT]
+        //used to determine the http verb to use [add=POST], [update=PUT]
         var state = $('#btn-save').val();
         var type = "POST"; //for creating new resource
         var product_id = $('#product_id').val();;
@@ -76,7 +87,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var product = '<tr id="product' + data.id + '"><td>' + data.name + '</td><td>' + data.phone + '</td><td>' + data.email + '</td><td>' + data.address + '</td>' ;
+                var product = '<tr id="product' + data.id + '"><td>' + data.name + '</td><td>' + data.phone + '</td><td>' + data.email + '</td><td>' + data.city+ '' + data.postcode + '' + data.township + '' + data.address + '</td>' ;
                 product += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '" style="border-Radius: 0px;">編輯</button></td>';
                 product += '<td><button class="btn btn-danger btn-delete delete-product" value="' + data.id + '" style="border-Radius: 0px;">刪除</button></td></tr>';
                 if (state == "新增"){ //if user added a new record
@@ -84,7 +95,7 @@ $(document).ready(function(){
                 }else{ //if user updated an existing record
                     $("#product" + product_id).replaceWith( product );
                 }
-                $('#frmProducts').trigger("reset");
+                $('#frmProducts').trigger("reset");//jquery的函數
                 $('#myModal').modal('hide')
             },
             error: function (data) {
