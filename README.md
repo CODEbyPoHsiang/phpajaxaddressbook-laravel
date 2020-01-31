@@ -55,12 +55,15 @@ DB 編碼:utf8mb4_unicode_ci
 * app/Member.php => 跟資料表有關，控制器或假資料生成都需要使用 use App\Member來做引用<br/>
 * database/factories/MemberFactory.php => 定義假資料生成的欄位屬性<br/>
 ```
-php artisan make:factory MemberFactory
-```<br/>
+    php artisan make:factory MemberFactory
+```
+<br/>
 * database/seeds/MemberTableSeeder.php => 生成假資料連接資料庫並寫入的設定(可自訂生成數，指令每操作一次會重置一次資料)<br/>
 ```
-php artisan db:seed --class=MemberTableSeeder
-```<br/>
+    php artisan db:seed --class=MemberTableSeeder
+```
+<br/>
+
 * resources/view/index.blade.php => 前台顯示的介面可以利用這個blade語法生成<br/>
 * routes/web.php => 主要負責網頁進來的路由控制<br/>
 * public/js/ajaxscript.js => 在blade內使用到的ajax的jQUERY程式碼<br/>
