@@ -4,7 +4,7 @@ Laravel AJAX CRUD 6.x
 _Laravel AJAX CRUD Modal_ demo provides basic CRUD web application without page refresh in Laravel using Bootstrap Modal and AJAX.
 
 
-## Installation
+## 還原步驟
 1. CLONE the package :
 ```js
    git clone https://github.com/CODEbyPoHsiang/phpajaxaddressbook-laravel
