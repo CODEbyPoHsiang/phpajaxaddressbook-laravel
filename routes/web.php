@@ -12,20 +12,20 @@
 
 
 //Display Index Page
-Route::get('/product', 'ProductController@index');
+Route::get('/member', 'MemberController@index');
 
 
 // Populate Data in Edit Modal Form
-Route::get('product/{product_id?}', 'ProductController@show');
+Route::get('member/{member_id?}', 'MemberController@show');
 
 
 //create New Product
-Route::post('product', 'ProductController@store');
+Route::post('member', 'MemberController@store');
 
 
 // update Existing Product
-Route::put('product/{product_id}', 'ProductController@update');
+Route::put('member/{member_id}', 'MemberController@update');
 
 
 // delete product
-Route::delete('product/{product_id}', 'ProductController@destroy');
+Route::delete('member/{member_id}', 'MemberController@destroy');

@@ -1,31 +1,31 @@
 
 $(document).ready(function(){
 
-    //get base URL *********************
+    //獲得原始的URL *********************
     var url = $('#url').val();
 
 
-    //display modal form for creating new product *********************
+    //新增聯絡人的按鈕，點擊會跳出新增的Modal *********************
     $('#btn_add').click(function(){
         $('.modal-title').text("新增聯絡人"); //Modal視窗的標題會判斷改為"新增聯絡人"
         $('#btn-save').val("新增");
-        $('#frmProducts').trigger("reset");
+        $('#frmMembers').trigger("reset");
         $('#myModal').modal('show');
     });
 
 
 
-    //display modal form for product EDIT ***************************
+    //編輯聯絡人的按鈕，點擊後會跳出編輯的Modal，利用ajax帶出資料***************************
     $(document).on('click','.open_modal',function(){
-        var product_id = $(this).val();
+        var member_id = $(this).val();
        
-        // Populate Data in Edit Modal Form
+        // 編輯視窗中透過ajax撈到的資料
         $.ajax({
             type: "GET",
-            url: url + '/' + product_id,
+            url: url + '/' + member_id,
             success: function (data) {
                 console.log(data);
-                $('#product_id').val(data.id);
+                $('#member_id').val(data.id);
                 $('#name').val(data.name);
                 $('#ename').val(data.ename);
                 $('#phone').val(data.phone);
@@ -48,15 +48,15 @@ $(document).ready(function(){
 
 
 
-    //create new product / update existing product ***************************
-    $("#btn-save").click(function (e) {
+    //新增聯絡人 / 編輯現有聯絡人 ***************************
+    $("#btn-save").click(function () {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         })
 
-        e.preventDefault(); 
+        // e.preventDefault(); 
         var formData = {
             name: $('#name').val(),
             ename: $('#ename').val(),
@@ -72,12 +72,12 @@ $(document).ready(function(){
 
         //used to determine the http verb to use [add=POST], [update=PUT]
         var state = $('#btn-save').val();
-        var type = "POST"; //for creating new resource
-        var product_id = $('#product_id').val();;
+        var type = "POST"; //用於新增
+        var member_id = $('#member_id').val();;
         var my_url = url;
         if (state == "編輯"){
-            type = "PUT"; //for updating existing resource
-            my_url += '/' + product_id;
+            type = "PUT"; //用於編輯
+            my_url += '/' + member_id;
         }
         console.log(formData);
         $.ajax({
@@ -87,15 +87,15 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                 console.log(data);
-                var product = '<tr id="product' + data.id + '"><td>' + data.name + '</td><td>' + data.phone + '</td><td>' + data.email + '</td><td>' + data.city+ '' + data.postcode + '' + data.township + '' + data.address + '</td>' ;
-                product += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '" style="border-Radius: 0px;">編輯</button></td>';
-                product += '<td><button class="btn btn-danger btn-delete delete-product" value="' + data.id + '" style="border-Radius: 0px;">刪除</button></td></tr>';
-                if (state == "新增"){ //if user added a new record
-                    $('#products-list').append(product);
-                }else{ //if user updated an existing record
-                    $("#product" + product_id).replaceWith( product );
+                var member = '<tr id="member' + data.id + '"><td>' + data.name + '</td><td>' + data.phone + '</td><td>' + data.email + '</td><td>' + data.city+ '' + data.postcode + '' + data.township + '' + data.address + '</td>' ;
+                member += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '" style="border-Radius: 0px;">編輯</button></td>';
+                member += '<td><button class="btn btn-danger btn-delete delete-member" value="' + data.id + '" style="border-Radius: 0px;">刪除</button></td></tr>';
+                if (state == "新增"){ //如果使用者新增一筆資料
+                    $('#members-list').append(member);
+                }else{ //如果使用者編輯一筆資料
+                    $("#member" + member_id).replaceWith( member );
                 }
-                $('#frmProducts').trigger("reset");//jquery的函數
+                $('#frmMembers').trigger("reset");//jquery的函數
                 $('#myModal').modal('hide')
             },
             error: function (data) {
@@ -105,9 +105,9 @@ $(document).ready(function(){
     });
 
 
-    //delete product and remove it from TABLE list ***************************
-    $(document).on('click','.delete-product',function(){
-        var product_id = $(this).val();
+    //從列表中刪除聯絡人的資料***************************
+    $(document).on('click','.delete-member',function(){
+        var member_id = $(this).val();
          $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -115,10 +115,10 @@ $(document).ready(function(){
         })
         $.ajax({
             type: "DELETE",
-            url: url + '/' + product_id,
+            url: url + '/' + member_id,
             success: function (data) {
                 console.log(data);
-                $("#product" + product_id).remove();
+                $("#member" + member_id).remove();
             },
             error: function (data) {
                 console.log('Error:', data);
