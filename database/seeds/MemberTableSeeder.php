@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Member;
+use App\Member; //要引用建立的Modal名稱
 class MemberTableSeeder extends Seeder
 {
     /**
