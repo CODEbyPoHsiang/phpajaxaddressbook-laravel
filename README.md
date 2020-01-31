@@ -58,6 +58,7 @@ DB 編碼:utf8mb4_unicode_ci
     php artisan make:factory MemberFactory
 ```
 <br/>
+
 * database/seeds/MemberTableSeeder.php => 生成假資料連接資料庫並寫入的設定(可自訂生成數，指令每操作一次會重置一次資料)<br/>
 ```
     php artisan db:seed --class=MemberTableSeeder
