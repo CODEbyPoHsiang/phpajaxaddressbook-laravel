@@ -48,8 +48,7 @@ DB 編碼:utf8mb4_unicode_ci
   http://localhost:8000/member
 ```
 ---
-
-##Laravel 主要資料夾說明:
+## Laravel 主要資料夾說明:
 
 * app/Http/Controllers/MemberController.php => 增刪修查功能皆在這裏面(控制器)<br/>
 * app/Member.php => 跟資料表有關，控制器或假資料生成都需要使用 use App\Member來做引用<br/>
