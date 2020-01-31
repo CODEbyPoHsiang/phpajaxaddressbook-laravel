@@ -43,10 +43,18 @@ DB 編碼:utf8mb4_unicode_ci
 ```
   php artisan db:seed --class=MemberTableSeeder
 ```
-9. 開啟網頁連結
+10. 開啟網頁連結
 ```
   http://localhost:8000/member
 ```
+----------------------------------------
+Laravel 主要資料夾說明:
+
+app/Http/Controllers/MemberController.php => 增刪修查功能皆在這裏面(控制器)
+app/Member.php => 跟資料表有關，控制器或假資料生成都需要使用 use App\Member來做引用
+database/factories/MemberFactory.php => 定義假資料生成的欄位屬性
+此表生成指令
+```php artisan make:factory MemberFactory```
 
 參考 
 
