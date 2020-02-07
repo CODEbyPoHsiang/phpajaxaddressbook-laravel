@@ -85,11 +85,20 @@ $(document).ready(function(){
             url: my_url,
             data: formData,
             dataType: 'json',
+            
             success: function (data) {
+                for (let x in data){
+                    if(data[x] === null){
+                        data[x] ='';
+                    }
+                };
                 console.log(data);
+               
                 var member = '<tr id="member' + data.id + '"><td>' + data.name + '</td><td>' + data.phone + '</td><td>' + data.email + '</td><td>' + data.city+ '' + data.postcode + '' + data.township + '' + data.address + '</td>' ;
                 member += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '" style="border-Radius: 0px;">編輯</button></td>';
                 member += '<td><button class="btn btn-danger btn-delete delete-member" value="' + data.id + '" style="border-Radius: 0px;">刪除</button></td></tr>';
+                
+
                 if (state == "新增"){ //如果使用者新增一筆資料
                     $('#members-list').append(member);
                 }else{ //如果使用者編輯一筆資料
