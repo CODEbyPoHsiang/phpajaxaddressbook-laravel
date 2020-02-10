@@ -9,23 +9,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Use App\Member;
 
 //Display Index Page
-Route::get('/member', 'MemberController@index');
+Route::get('/', 'MemberController@index');
 
 
 // Populate Data in Edit Modal Form
-Route::get('member/{member_id?}', 'MemberController@show');
+Route::get('/{member_id?}', 'MemberController@show');
 
 
 //create New Product
-Route::post('member', 'MemberController@store');
+Route::post('', 'MemberController@store');
 
 
 // update Existing Product
-Route::put('member/{member_id}', 'MemberController@update');
+Route::put('/{member_id}', 'MemberController@update');
 
 
 // delete product
-Route::delete('member/{member_id}', 'MemberController@destroy');
+Route::delete('/{member_id}', 'MemberController@destroy');

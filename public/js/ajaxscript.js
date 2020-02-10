@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     //獲得原始的URL *********************
     var url = $('#url').val();
-
+    console.log(url);
 
     //新增聯絡人的按鈕，點擊會跳出新增的Modal *********************
     $('#btn_add').click(function(){
@@ -18,7 +18,7 @@ $(document).ready(function(){
     //編輯聯絡人的按鈕，點擊後會跳出編輯的Modal，利用ajax帶出資料***************************
     $(document).on('click','.open_modal',function(){
         var member_id = $(this).val();
-       
+        console.log(member_id);
         // 編輯視窗中透過ajax撈到的資料
         $.ajax({
             type: "GET",
@@ -76,6 +76,15 @@ $(document).ready(function(){
         var member_id = $('#member_id').val();;
         var my_url = url;
         if (state == "編輯"){
+
+            Swal.fire( { 
+                position: 'top-end',
+                type: 'success',
+                title: '你的修改已成功保存!', 
+                showConfirmButton: false, 
+                timer: 1000 
+                })//編輯成功彈出的提示視窗
+
             type = "PUT"; //用於編輯
             my_url += '/' + member_id;
         }
@@ -87,25 +96,32 @@ $(document).ready(function(){
             dataType: 'json',
             
             success: function (data) {
-                for (let x in data){
+                for (var x in data){
                     if(data[x] === null){
                         data[x] ='';
                     }
-                };
+                };//將撈到的null值改成空字串
                 console.log(data);
-               
                 var member = '<tr id="member' + data.id + '"><td>' + data.name + '</td><td>' + data.phone + '</td><td>' + data.email + '</td><td>' + data.city+ '' + data.postcode + '' + data.township + '' + data.address + '</td>' ;
                 member += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '" style="border-Radius: 0px;">編輯</button></td>';
                 member += '<td><button class="btn btn-danger btn-delete delete-member" value="' + data.id + '" style="border-Radius: 0px;">刪除</button></td></tr>';
-                
-
+    
                 if (state == "新增"){ //如果使用者新增一筆資料
+
+                    Swal.fire( { 
+                        type: 'success',
+                        title: '你已新增成功!', 
+                        // showConfirmButton: false, 
+                        timer: 1000 
+                        })//新增成功，彈出的提示視窗
+
                     $('#members-list').append(member);
                 }else{ //如果使用者編輯一筆資料
                     $("#member" + member_id).replaceWith( member );
                 }
                 $('#frmMembers').trigger("reset");//jquery的函數
                 $('#myModal').modal('hide')
+                
             },
             error: function (data) {
                 console.log('Error:', data);
@@ -122,6 +138,14 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         })
+
+        Swal.fire({ 
+                title: '聯絡人資料已刪除!', 
+                type: 'warning', 
+                // showConfirmButton: false, 
+                timer: 1000 
+                })//刪除後提示的彈出視窗
+
         $.ajax({
             type: "DELETE",
             url: url + '/' + member_id,

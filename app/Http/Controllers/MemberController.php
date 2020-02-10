@@ -18,6 +18,12 @@ class MemberController extends Controller
         return view('index')->with('members', $members);
     }
 
+    public function apiindex()
+    {
+        $members = Member::all();
+        return Member::all();
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -63,6 +69,8 @@ class MemberController extends Controller
         $member->address = $request->address;
         $member->notes = $request->notes;
         $member->save();
+
+        // Member::find($member_id)->update($request->all());
         return response()->json($member);
     }
 

@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+
+     <!-- 使用sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+
     <style>
       body
       {
@@ -28,6 +34,12 @@
         border-radius:5px;
         margin-top:100px;
       } */
+
+      label.xrequired:after {
+        content: '*(此欄位為必填) ';
+        color: red;
+    }
+
       </style>
     </head>
 
@@ -94,8 +106,8 @@
                 <form id="frmMembers" name="frmMembers" class="form-horizontal" novalidate="">
                   <div class="row">
                     <div class="col-xs-6">
-                      <label  class="text-light" >姓名</label>
-                      <input type="text" class="form-control has-error" id="name" name="name" style="border-Radius: 0px;" required />
+                      <label  class="xrequired" >姓名</label>
+                      <input type="text"  required="required" class="form-control has-error" id="name" name="name" style="border-Radius: 0px;" required />
                     </div>
                     <div class="col-xs-6">
                       <label class="text-light"  >英文姓名</label>
