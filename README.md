@@ -23,7 +23,7 @@ cp .env.example .env
 ```
 5. 到 phpmyadmin 建立 database(只需一次)
 ```
-DB 名稱:ajax<br>
+DB 名稱:ajax
 DB 編碼:utf8mb4_unicode_ci
 ```
 6. An application key can be generated
