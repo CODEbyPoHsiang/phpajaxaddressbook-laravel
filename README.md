@@ -43,7 +43,11 @@ DB 編碼:utf8mb4_unicode_ci
 ```
   php artisan db:seed --class=MemberTableSeeder
 ```
-10. 開啟網頁連結
+10. 啟動 php artisan 服務
+```
+  php artisan serve
+```
+11. 開啟網頁連結
 ```
   http://localhost:8000/member
 ```
