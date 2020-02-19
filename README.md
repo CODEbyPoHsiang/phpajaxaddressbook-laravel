@@ -70,6 +70,7 @@ DB 編碼:utf8mb4_unicode_ci
 
 ---
 ## Laravel 主要API說明:
+* API路由控制路徑 : routes/api.php => 主要負責網頁進來的路由控制<br/>
 
 * 顯示全部資料 API (GET)
 ```
@@ -90,9 +91,8 @@ http://localhost:8000/api/edit/{id}
 * 刪除一筆資料 API (DELETE)
 ```
 http://localhost:8000/api/delete/{id}
+
 ---
-
-
 
 參考 <br/>
 
