@@ -52,13 +52,14 @@ DB 編碼:utf8mb4_unicode_ci
 
 * app/Http/Controllers/MemberController.php => 增刪修查功能皆在這裏面(控制器)<br/>
 * app/Member.php => 跟資料表有關，控制器或假資料生成都需要使用 use App\Member來做引用<br/>
-* database/factories/MemberFactory.php => 定義假資料生成的欄位屬性<br/>
+* database/factories/MemberFactory.php => 定義假資料生成的欄位屬性 (此指令已經在專案裡生成，不必在執行一次)<br/>
 ```
     php artisan make:factory MemberFactory
 ```
 <br/>
 
-* database/seeds/MemberTableSeeder.php => 生成假資料連接資料庫並寫入的設定(可自訂生成數，指令每操作一次會重置一次資料)<br/>
+* database/seeds/MemberTableSeeder.php => 生成假資料連接資料庫並寫入的設定
+(此指令還原專案後，需要執行，才可以生成假資料，可自訂生成數，指令每操作一次會重置一次資料)<br/>
 ```
     php artisan db:seed --class=MemberTableSeeder
 ```
