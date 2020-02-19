@@ -53,10 +53,7 @@ class MemberController extends Controller
         $member->address = strval($request->address);
         $member->notes = strval($request->notes);
         $member->save();
-
-        // Member::find($member_id)->update($request->all());
-        return response()->json($member);
-
+        
         return response()->json($member);
     }
 
@@ -69,7 +66,13 @@ class MemberController extends Controller
     public function show($member_id)
     {
         $member = Member::find($member_id);
-        return response()->json($member);
+        if($member){
+            return response()->json($member);
+        }
+        else {
+            return response()->json(['操作錯誤!'], "200");
+        }
+        
     }
 
     /**
@@ -93,9 +96,10 @@ class MemberController extends Controller
         $member->address = strval($request->address);
         $member->notes = strval($request->notes);
         $member->save();
-
         // Member::find($member_id)->update($request->all());
-        return response()->json($member);
+        // return response()->json($member);
+        return response()->json($member); 
+
     }
 
     /**
@@ -107,6 +111,12 @@ class MemberController extends Controller
     public function destroy($member_id)
     {
         $member = Member::destroy($member_id);
-        return response()->json($member);
+
+        if($member){
+        return response()->json(['刪除資料成功'], "200");
+        }
+        else{
+            return response()->json(['刪除資料失敗'], "200"); 
+        }
     }
 }
