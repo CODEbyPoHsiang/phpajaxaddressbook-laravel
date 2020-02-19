@@ -69,6 +69,30 @@ DB 編碼:utf8mb4_unicode_ci
 * public/js/ajaxscript.js => 在blade內使用到的ajax的jQUERY程式碼<br/>
 
 ---
+## Laravel 主要API說明:
+
+* 顯示全部資料 API (GET)
+```
+http://localhost:8000/api
+```
+* 查看單一資料 API (GET)
+```
+http://localhost:8000/api/{id}
+```
+* 新增一筆資料 API (POST)
+```
+http://localhost:8000/api/new
+```
+* 編輯一筆資料 API (PUT)
+```
+http://localhost:8000/api/edit/{id}
+```
+* 刪除一筆資料 API (DELETE)
+```
+http://localhost:8000/api/delete/{id}
+---
+
+
 
 參考 <br/>
 
