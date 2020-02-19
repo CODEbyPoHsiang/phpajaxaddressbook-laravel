@@ -24,17 +24,17 @@ Use App\Member;
 Route::get('/', 'MemberController@apiindex');
 
 
-// 編輯通訊錄聯絡人資料
+// 查看單一聯絡人資料
 Route::get('/{member_id?}', 'MemberController@show');
 
 
 //新建通訊錄聯絡人資料
-Route::post('', 'MemberController@store');
+Route::post('/new', 'MemberController@store');
 
 
 // 更新聯絡人資料
-Route::put('/{member_id}', 'MemberController@update');
+Route::put('/edit/{member_id}', 'MemberController@update');
 
 
 // 刪除聯絡人資料
-Route::delete('/{member_id}', 'MemberController@destroy');
+Route::delete('/delete/{member_id}', 'MemberController@destroy');
