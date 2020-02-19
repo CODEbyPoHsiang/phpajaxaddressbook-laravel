@@ -96,11 +96,11 @@ $(document).ready(function(){
             dataType: 'json',
             
             success: function (data) {
-                for (var x in data){
-                    if(data[x] === null){
-                        data[x] ='';
-                    }
-                };//將撈到的null值改成空字串
+                // for (var x in data){
+                //     if(data[x] === null){
+                //         data[x] ='';
+                //     }
+                // };//將撈到的null值改成空字串
                 console.log(data);
                 var member = '<tr id="member' + data.id + '"><td>' + data.name + '</td><td>' + data.phone + '</td><td>' + data.email + '</td><td>' + data.city+ '' + data.postcode + '' + data.township + '' + data.address + '</td>' ;
                 member += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '" style="border-Radius: 0px;">編輯</button></td>';

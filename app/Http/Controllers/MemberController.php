@@ -15,13 +15,20 @@ class MemberController extends Controller
     public function index()
     {
         $members = Member::all();
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
         return view('index')->with('members', $members);
     }
 
-    public function apiindex()
+    public function apiindex(Request $request)
     {
         $members = Member::all();
-        return Member::all();
+        // dd($members);
+        // return Member::all();
+        return response()->json($members);
     }
 
     /**
@@ -32,7 +39,24 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $member = Member::create($request->all());
+        // $member = Member::create($request->all());
+
+        $member = new Member;
+        $member->name = strval($request->name);
+        $member->ename = strval($request->ename);
+        $member->phone = strval($request->phone);
+        $member->email = strval($request->email);
+        $member->sex = strval($request->sex);
+        $member->city = strval($request->city);
+        $member->township = strval($request->township);
+        $member->postcode = strval($request->postcode);
+        $member->address = strval($request->address);
+        $member->notes = strval($request->notes);
+        $member->save();
+
+        // Member::find($member_id)->update($request->all());
+        return response()->json($member);
+
         return response()->json($member);
     }
 
@@ -58,16 +82,16 @@ class MemberController extends Controller
     public function update(Request $request, $member_id)
     {
         $member = Member::find($member_id);
-        $member->name = $request->name;
-        $member->ename = $request->ename;
-        $member->phone = $request->phone;
-        $member->email = $request->email;
-        $member->sex = $request->sex;
-        $member->city = $request->city;
-        $member->township = $request->township;
-        $member->postcode = $request->postcode;
-        $member->address = $request->address;
-        $member->notes = $request->notes;
+        $member->name = strval($request->name);
+        $member->ename = strval($request->ename);
+        $member->phone = strval($request->phone);
+        $member->email = strval($request->email);
+        $member->sex = strval($request->sex);
+        $member->city = strval($request->city);
+        $member->township = strval($request->township);
+        $member->postcode = strval($request->postcode);
+        $member->address = strval($request->address);
+        $member->notes = strval($request->notes);
         $member->save();
 
         // Member::find($member_id)->update($request->all());
