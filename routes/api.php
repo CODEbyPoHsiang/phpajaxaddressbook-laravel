@@ -17,8 +17,14 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+// force-json 必須放到最前面
+Route::group(['middleware' => ['force-json', 'auth:api']], function () {
+    // put your router
+});
 
 Use App\Member;
+
+
 
 //顯示通訊錄所有資料清單
 Route::get('/', 'MemberController@apiindex');
