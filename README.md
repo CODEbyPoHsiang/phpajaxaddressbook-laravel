@@ -78,6 +78,7 @@ DB 編碼:utf8mb4_unicode_ci
 ## Laravel 主要API說明:
 * API路由控制路徑 : routes/api.php => 主要負責網頁進來的路由控制<br/>
 * 利用 POSTMAN 來測試 API<br/>
+---
 * 顯示全部資料 API (GET)
 ```
 http://localhost:8000/api
