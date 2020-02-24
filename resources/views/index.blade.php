@@ -33,47 +33,55 @@
   </head>
 
   <body>
+   <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="javascript:void(0);">通訊錄</a>
+            </div>
+          </div>
+        </nav>
       <div class="container">
-      <h1>通訊錄</h1>
                   <div class="pull-right">
-                      <button id="btn_add" name="btn_add" class="btn btn-primary pull-right" style="border-Radius: 0px;">新增聯絡人</button>
+                      <button id="btn_add" name="btn_add" class="btn btn-default pull-right" style="border-Radius: 0px;">新增聯絡人</button>
                   </div>
                   <br />
                   <br />
                   <br />
           <div class="row">
-          <table class="table table-striped table-bordered table-hover">
-                      <thead>
-                          <tr>
-                            <!-- <th>ID </th> -->
-                            <th width="15%">姓名</th>
-                            <th width="15%">電話</th>
-                            <th width="25%">電子信箱</th>
-                            <th width="40%">地址</th>
-                            <th width="10%">操作</th>
-                            <th width="10%">動作</th>
-                          </tr>
-                      </thead>
-                      <tbody id="members-list" name="members-list">
-                          @foreach ($members as $member)
-                            <tr id="member{{$member->id}}" class="active">
-                                <!-- <td>{{$member->id}}</td> -->
-                                <td>{{$member->name}}</td>
-                                <td>{{$member->phone}}</td>
-                                <td>{{$member->email}}</td>
-                                <td>{{$member->city}}{{$member->postcode}}{{$member->township}}{{$member->address}}</td>
-                                <td>
-                                    <button class="btn btn-warning btn-detail open_modal" value="{{$member->id}}" style="border-Radius: 0px;">編輯</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger btn-delete delete-member" value="{{$member->id}}" style="border-Radius: 0px;">刪除</button>
-                                </td>
-                            </tr>
-                          @endforeach
-                      </tbody>
-                  </table> 
-              </div>
+            <div class="col-md-12 col-md-offset-0">
+              <table class="table table-striped table-hover table-bordered ">
+                <thead>
+                    <tr class="info">
+                      <!-- <th>ID </th> -->
+                      <th width="15%">姓名</th>
+                      <th width="15%">電話</th>
+                      <th width="25%">電子信箱</th>
+                      <th width="40%">地址</th>
+                      <th width="10%">操作</th>
+                      <th width="10%">動作</th>
+                    </tr>
+                </thead>
+                <tbody id="members-list" name="members-list">
+                    @foreach ($member as $m)
+                      <tr id="member{{$m->id}}" class="active">
+                        <!-- <td>{{$m->id}}</td> -->
+                          <td>{{$m->name}}</td>
+                          <td>{{$m->phone}}</td>
+                          <td>{{$m->email}}</td>
+                          <td>{{$m->city}}{{$m->postcode}}{{$m->township}}{{$m->address}}</td>
+                          <td>
+                              <button class="btn btn-warning btn-detail open_modal" value="{{$m->id}}" style="border-Radius: 0px;">編輯</button>
+                          </td>
+                          <td>
+                              <button class="btn btn-danger btn-delete delete-member" value="{{$m->id}}" style="border-Radius: 0px;">刪除</button>
+                          </td>
+                      </tr>
+                    @endforeach
+                </tbody>
+              </table> 
+            </div>
           </div>
+        </div>
       </div>
 
       <!-- Passing BASE URL to AJAX -->

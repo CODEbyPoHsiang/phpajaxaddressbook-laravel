@@ -14,21 +14,21 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
+        $member = Member::all();
         /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-        return view('index')->with('members', $members);
+        return view('index')->with('member', $member);
     }
 
     public function apiindex(Request $request)
     {
-        $members = Member::all();
+        $member = Member::all();
         // dd($members);
         // return Member::all();
-        return response()->json($members);
+        return response()->json($member);
     }
 
     /**
