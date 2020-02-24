@@ -49,7 +49,7 @@ DB 編碼:utf8mb4_unicode_ci
 ```
 11. 開啟網頁連結
 ```
-  http://localhost:8000/member
+  http://localhost:8000
 ```
 ---
 ## Laravel 主要資料夾說明:
