@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <title>通訊錄 || PHP - AJAX</title>
+      <title>通訊錄 || PHP - AJAX -Laravel</title>
+      
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -19,27 +20,41 @@
       <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
 
       <style>
-        body
-        {
-          margin:0;
-          padding:0;
-          /* background-color:#f1f1f1; */
-        }
-        label.xrequired:after {
+          body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+          }
+          .topnav {
+          overflow: hidden;
+          }
+          label.xrequired:after {
           content: '*(此欄位為必填) ';
           color: red;
-      }
+          }
+          .topnav-right {
+          float: right;
+          }
+          .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+          }
       </style>
   </head>
 
   <body>
-   <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="javascript:void(0);">通訊錄</a>
-            </div>
+    <nav class="navbar navbar-default">
+      <div class="topnav">
+        <a class="active" href="#home">通訊錄</a>
+          <div class="topnav-right">
+              <a href="#about">Laravel</a>
           </div>
-        </nav>
+      </div>
+    </nav>
+
       <div class="container">
                   <div class="pull-right">
                       <button id="btn_add" name="btn_add" class="btn btn-default pull-right" style="border-Radius: 0px;">新增聯絡人</button>
@@ -49,7 +64,7 @@
                   <br />
           <div class="row">
             <div class="col-md-12 col-md-offset-0">
-              <table class="table table-striped table-hover table-bordered ">
+              <table class="table table-striped table-hover">
                 <thead>
                     <tr class="info">
                       <!-- <th>ID </th> -->
@@ -92,7 +107,7 @@
         <div class="modal-dialog" style="width:800px">
           <div class="modal-content"  style="border-Radius: 0px;">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</button>
               <h4 class="modal-title" id="myModalLabel">Member Form</h4>
             </div>
             <div class="modal-body">
