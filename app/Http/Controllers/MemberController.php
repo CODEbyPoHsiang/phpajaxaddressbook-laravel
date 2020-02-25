@@ -28,7 +28,15 @@ class MemberController extends Controller
         $member = Member::all();
         // dd($members);
         // return Member::all();
-        return response()->json($member);
+
+        // 回傳陣列包陣列
+        // $json=json_encode($member,JSON_FORCE_OBJECT);
+        // return response($json);
+        //回傳陣列包物件包陣列
+        return response()->json(["200" => "聯絡人資料載入正常", 'data' => $member]);
+
+        // return response($member);
+        
     }
 
     /**
@@ -70,7 +78,7 @@ class MemberController extends Controller
             return response()->json($member);
         }
         else {
-            return response()->json(['操作錯誤!'], "200");
+            return response()->json(['查無此筆資料，操作錯誤!'], "404");
         }
         
     }
@@ -98,7 +106,10 @@ class MemberController extends Controller
         $member->save();
         // Member::find($member_id)->update($request->all());
         // return response()->json($member);
-        return response()->json($member); 
+        
+     
+        
+        return response()->json(['資料編輯成功'], "200"); 
 
     }
 
@@ -116,7 +127,7 @@ class MemberController extends Controller
         return response()->json(['刪除資料成功'], "200");
         }
         else{
-            return response()->json(['刪除資料失敗'], "200"); 
+            return response()->json(['刪除資料失敗'], "404"); 
         }
     }
 }

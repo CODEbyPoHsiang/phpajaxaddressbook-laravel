@@ -16,7 +16,7 @@ $factory->define(Member::class, function (Faker $faker) {
         'township'  => $faker->state,
         'postcode'  => $faker->postcode,
         'address' => $faker->streetAddress,
-        'notes' => $faker->string = 'v',
+        'notes' => $faker->string = '',
         //
     ];
 });
