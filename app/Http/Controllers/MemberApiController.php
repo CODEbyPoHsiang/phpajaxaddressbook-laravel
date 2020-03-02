@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Member;
-
-class MemberController extends Controller
+class MemberApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,14 @@ class MemberController extends Controller
     public function index()
     {
         $member = Member::all();
-        return view('index')->with('member', $member);
+        // dd($members);
+        // return Member::all();
+        // 回傳陣列包陣列
+        // $json=json_encode($member,JSON_FORCE_OBJECT);
+        // return response($json);
+        //回傳陣列包物件包陣列
+        return response()->json(["200" => "聯絡人資料載入正常", 'data' => $member]);
+
     }
 
     /**
@@ -26,8 +32,6 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        // $member = Member::create($request->all());
-
         $member = new Member;
         $member->name = strval($request->name);
         $member->ename = strval($request->ename);
@@ -40,7 +44,8 @@ class MemberController extends Controller
         $member->address = strval($request->address);
         $member->notes = strval($request->notes);
         $member->save();
-        return response()->json($member);
+        // return response()->json($member);
+        return response()->json(["200" => "聯絡人新增成功!", 'data' => $member]); 
     }
 
     /**
@@ -52,7 +57,13 @@ class MemberController extends Controller
     public function show($member_id)
     {
         $member = Member::find($member_id);
-        return response()->json($member);
+        if($member){
+            return response()->json($member);
+        }
+        else {
+            return response()->json(['查無此筆資料，操作錯誤!'], "404");
+        }
+        
     }
 
     /**
@@ -76,9 +87,9 @@ class MemberController extends Controller
         $member->address = strval($request->address);
         $member->notes = strval($request->notes);
         $member->save();
-        return response()->json($member);
+        // Member::find($member_id)->update($request->all());
+        return response()->json(["200" => "聯絡人資料編輯成功", 'data' => $member]); 
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -88,7 +99,12 @@ class MemberController extends Controller
     public function destroy($member_id)
     {
         $member = Member::destroy($member_id);
-        return response()->json($member);
-        
+
+        if($member){
+        return response()->json(['刪除資料成功'], "200");
+        }
+        else{
+            return response()->json(['刪除資料失敗'], "404"); 
+        }
     }
 }

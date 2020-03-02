@@ -17,30 +17,18 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-// force-json 必須放到最前面
-Route::group(['middleware' => ['force-json', 'auth:api']], function () {
-    // put your router
-});
-
 Use App\Member;
 
 
+//API的路由
 
 //顯示通訊錄所有資料清單
-Route::get('/', 'MemberController@apiindex');
-
-
+Route::get('/', 'MemberApiController@index');
 // 查看單一聯絡人資料
-Route::get('/{member_id?}', 'MemberController@show');
-
-
+Route::get('/{member_id?}', 'MemberApiController@show');
 //新建通訊錄聯絡人資料
-Route::post('/new', 'MemberController@store');
-
-
+Route::post('/new', 'MemberApiController@store');
 // 更新聯絡人資料
-Route::put('/edit/{member_id}', 'MemberController@update');
-
-
+Route::put('/edit/{member_id}', 'MemberApiController@update');
 // 刪除聯絡人資料
-Route::delete('/delete/{member_id}', 'MemberController@destroy');
+Route::delete('/delete/{member_id}', 'MemberApiController@destroy');
