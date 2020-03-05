@@ -13,15 +13,25 @@ class MemberApiController extends Controller
      */
     public function index()
     {
-        $member = Member::all();
-        // dd($members);
-        // return Member::all();
-        // 回傳陣列包陣列
-        // $json=json_encode($member,JSON_FORCE_OBJECT);
-        // return response($json);
-        //回傳陣列包物件包陣列
-        return response()->json(["200" => "聯絡人資料載入正常", 'data' => $member]);
-
+        $member =Member::all();
+        $data = $member->toArray();
+        
+        if(empty($data)){
+            $response = [
+                'success' => false,
+                'data' => "Empty",
+                'message' => '無任何聯絡人資料'
+            ];
+            return response()->json($response, 200);
+          }
+          else{
+            $response = [
+                'success' => true,
+                'data' => $member,
+                'message' => '聯絡人資料載入成功'
+            ];
+            return response()->json($response, 200);
+          }
     }
 
     /**
