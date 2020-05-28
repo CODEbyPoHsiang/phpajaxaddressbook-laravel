@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
     //獲得原始的URL *********************
@@ -49,14 +48,14 @@ $(document).ready(function(){
 
 
     //新增聯絡人 / 編輯現有聯絡人 ***************************
-    $("#btn-save").click(function () {
+    $("#btn-save").click(function (e) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         })
 
-        // e.preventDefault(); 
+        e.preventDefault(); 
         var formData = {
             name: $('#name').val(),
             ename: $('#ename').val(),
@@ -82,7 +81,7 @@ $(document).ready(function(){
                 type: 'success',
                 title: '你的修改已成功保存!', 
                 showConfirmButton: false, 
-                timer: 1000 
+                timer: 2000 
                 })//編輯成功彈出的提示視窗
 
             type = "PUT"; //用於編輯
@@ -107,15 +106,13 @@ $(document).ready(function(){
                 member += '<td><button class="btn btn-danger btn-delete delete-member" value="' + data.id + '" style="border-Radius: 0px;">刪除</button></td></tr>';
     
                 if (state == "新增"){ //如果使用者新增一筆資料
-
-                    Swal.fire( { 
-                        type: 'success',
-                        title: '你已新增成功!', 
-                        // showConfirmButton: false, 
-                        timer: 1000 
-                        })//新增成功，彈出的提示視窗
-
                     $('#members-list').append(member);
+                    Swal.fire({
+                        type: 'success',
+                        title: '資料已新增成功!',
+                        showConfirmButton: false, 
+                        timer: 1000
+                    })//新增成功，彈出的提示視窗
                 }else{ //如果使用者編輯一筆資料
                     $("#member" + member_id).replaceWith( member );
                 }
@@ -138,25 +135,45 @@ $(document).ready(function(){
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             }
         })
+        // Swal.fire({
+        //     title: '聯絡人資料已刪除!',
+        //     type: 'warning',
+        //     // showConfirmButton: false, 
+        //     timer: 1000
+        // }),
 
-        Swal.fire({ 
-                title: '聯絡人資料已刪除!', 
-                type: 'warning', 
-                // showConfirmButton: false, 
-                timer: 1000 
-                })//刪除後提示的彈出視窗
-
-        $.ajax({
-            type: "DELETE",
-            url: url + '/' + member_id,
-            success: function (data) {
-                console.log(data);
-                $("#member" + member_id).remove();
-            },
-            error: function (data) {
-                console.log('Error:', data);
+        Swal.fire({
+            title: '確定要刪除此筆資料嗎?',
+            text: "資料刪除後將無法復原!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '刪除',
+            cancelButtonText: '取消',
+            showConfirmButton: true 
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    title:'資料刪除成功!',
+                    type:'success',
+                    showConfirmButton:false,
+                    timer: 1000
+                })
+                $.ajax({
+                    //刪除後提示的彈出視窗
+                    type: "DELETE",
+                    url: url + '/' + member_id,
+                    success: function (data) {
+                        console.log(data);
+                        $("#member" + member_id).remove();
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
             }
-        });
+        })        
     });
     
 });
