@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <title>通訊錄 || PHP - AJAX -Laravel</title>
+      <title>通訊錄 || Laravel 6.x </title>
       
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -50,7 +50,7 @@
       <div class="topnav">
         <a class="active" href="#home">通訊錄</a>
           <div class="topnav-right">
-              <a href="#about">Laravel</a>
+              <a>Laravel 6.x</a>
           </div>
       </div>
     </nav>
@@ -67,7 +67,6 @@
               <table class="table table-striped table-hover">
                 <thead>
                     <tr class="info">
-                      <!-- <th>ID </th> -->
                       <th width="15%">姓名</th>
                       <th width="15%">電話</th>
                       <th width="25%">電子信箱</th>
@@ -79,7 +78,6 @@
                 <tbody id="members-list" name="members-list">
                     @foreach ($member as $m)
                       <tr id="member{{$m->id}}" class="active">
-                        <!-- <td>{{$m->id}}</td> -->
                           <td>{{$m->name}}</td>
                           <td>{{$m->phone}}</td>
                           <td>{{$m->email}}</td>
@@ -102,7 +100,7 @@
       <!-- Passing BASE URL to AJAX -->
       <input id="url" type="hidden" value="{{ \Request::url() }}">
 
-      <!-- MODAL SECTION -->
+      <!-- MODAL 設置 -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width:800px">
           <div class="modal-content"  style="border-Radius: 0px;">
